@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Steps to Apply for POC</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Outfit', sans-serif;
+      background: radial-gradient(circle at top left, #1b1b3a, #2e2e64, #000);
+      color: white;
+      overflow-x: hidden;
+    }
+
+    .container {
+      padding: 80px 30px;
+      max-width: 1200px;
+      margin: auto;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 42px;
+      margin-bottom: 60px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #00f7ff;
+    }
+
+    .steps {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 50px;
+      justify-content: center;
+      align-items: stretch;
+    }
+
+    .step {
+      position: relative;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      width: 280px;
+      padding: 30px 25px;
+      text-align: center;
+      box-shadow: 0 0 25px rgba(0, 255, 255, 0.2);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      animation: fadeIn 1s ease forwards;
+    }
+
+    .step:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 50px rgba(0, 255, 255, 0.4);
+    }
+
+    .step::before {
+      content: attr(data-step);
+      position: absolute;
+      top: -25px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #00f7ff;
+      color: #000;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      font-weight: bold;
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
+    }
+
+    .step-title {
+      font-size: 20px;
+      font-weight: 600;
+      margin-top: 25px;
+      color: #ffffff;
+    }
+
+    .step-desc {
+      font-size: 15px;
+      margin-top: 12px;
+      color: #bbbbff;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(40px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Delays for animated entrance */
+    .step:nth-child(1) { animation-delay: 0s; }
+    .step:nth-child(2) { animation-delay: 0.2s; }
+    .step:nth-child(3) { animation-delay: 0.4s; }
+
+    @media (max-width: 768px) {
+      .step {
+        width: 90%;
+      }
+
+      h1 {
+        font-size: 32px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Steps to Apply for POC</h1>
+    <div class="steps">
+      <div class="step" data-step="01">
+        <div class="step-title">Find Mentor</div>
+        <div class="step-desc">Find appropriate mentor for your project</div>
+      </div>
+      <div class="step" data-step="02">
+        <div class="step-title">Login / Signup</div>
+        <div class="step-desc">Login to your account or sign up as a new user</div>
+      </div>
+      <div class="step" data-step="03">
+        <div class="step-title">Submit Form</div>
+        <div class="step-desc">Fill and submit POC/IPR application form</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,523 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PP Savani University - SSIP</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Raleway:wght@600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/student/dashboard.css">
+
+    <style>
+    .steps-container {
+      padding: 60px 20px;
+      background: radial-gradient(circle at top left, #1b1b3a, #2e2e64);
+      color: white;
+      text-align: center;
+      border-radius: 20px;
+      margin: 50px auto;
+      max-width: 1100px;
+    }
+
+    .steps-container h2 {
+      font-size: 32px;
+      margin-bottom: 40px;
+      color: #00f7ff;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .steps-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+    }
+
+    .step-card {
+      position: relative;
+      width: 260px;
+      padding: 30px 20px;
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 0 25px rgba(0, 255, 255, 0.15);
+      transition: transform 0.3s ease;
+    }
+
+    .step-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 35px rgba(0, 255, 255, 0.3);
+    }
+
+    .step-card::before {
+      content: attr(data-step);
+      position: absolute;
+      top: -25px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #00f7ff;
+      color: #000;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      font-weight: bold;
+      font-size: 22px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+    }
+
+    .step-title {
+      font-size: 20px;
+      font-weight: 600;
+      margin-top: 25px;
+      color: #ffffff;
+    }
+
+    .step-desc {
+      font-size: 14px;
+      margin-top: 10px;
+      color: #d6eaff;
+    }
+
+    @media (max-width: 768px) {
+      .steps-grid {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .step-card {
+        width: 90%;
+      }
+    }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="header-left">
+            <img class="logo" src="/static/Images/Logo/ppsu.png" alt="P P Savani University Logo">
+            <img class="logo" src="/static/Images/Logo/1.png" alt="University Logo">
+            <img class="logo" src="/static/Images/Logo/ebc.png" alt="EBC Logo">
+            <img class="logo" src="/static/Images/Logo/ssip.png" alt="SSIP Logo">
+        </div>
+
+        <button class="nav-toggle" aria-label="Toggle navigation">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <nav class="nav-links">
+            <a href="#about_ssip">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#my_applications">My Applications</a>
+            <a href="#ssip_coordinators">SSIP Coordinators</a>
+             <a href="#apply">Apply For Poc/Ipr</a>
+
+
+
+
+            <form id="logoutForm" action="{% url 'logout' %}" method="post">
+                {% csrf_token %}
+                <button type="button" class="logout-btn" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </form>
+        </nav>
+    </header>
+
+    <section class="video-section" data-aos="zoom-in-left">
+        <video autoplay muted loop playsinline class="video-background">
+            <source src="/static/Hero_video.mp4" type="video/mp4">
+            Your browser does not support HTML5 video.
+        </video>
+
+        <div class="video-content">
+            <h2>SSIP @ P P Savani University</h2>
+            <p>Empowering Innovation and Startups. Driving entrepreneurial spirit through mentorship, incubation,
+                funding
+                assistance, and dynamic support for emerging innovators and changemakers.</p>
+        </div>
+    </section>
+
+
+
+    <section class="dashboard-section section-spacing">
+        <div class="container">
+            <div class="slideshow-container">
+
+                <h2 class="dashboard-page-heading">Startup culture at P P Savani University</h2>
+                <div class="mySlides fade">
+                    <img src="/static/Images/Event/1.JPG" alt="Student Interaction Session">
+                    <div class="text">Student Interaction Session</div>
+                </div>
+
+                <div class="mySlides fade">
+                    <img src="/static/Images/Event/2.JPG" alt="Workshop on Entrepreneurship">
+                    <div class="text">Workshop on Entrepreneurship</div>
+                </div>
+
+                <div class="mySlides fade">
+                    <img src="/static/Images/Event/3.jpg" alt="Idea Pitching Competition">
+                    <div class="text">Idea Pitching Competition</div>
+                </div>
+
+                <div class="mySlides fade">
+                    <img src="/static/Images/Event/4.jpg" alt="Idea Pitching Competition">
+                    <div class="text">Idea Pitching Competition</div>
+                </div>
+
+                <div class="mySlides fade">
+                    <img src="/static/Images/Event/5.jpg" alt="Idea Pitching Competition">
+                    <div class="text">Idea Pitching Competition</div>
+                </div>
+
+                <div class="mySlides fade">
+                    <img src="/static/Images/Event/6.jpg" alt="Idea Pitching Competition">
+                    <div class="text">Entrepreneurship Quiz Competition</div>
+                </div>
+
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+            </div>
+            <div class="dot-container">
+                <span class="dot" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+                <span class="dot" onclick="currentSlide(3)"></span>
+                <span class="dot" onclick="currentSlide(4)"></span>
+                <span class="dot" onclick="currentSlide(5)"></span>
+                <span class="dot" onclick="currentSlide(6)"></span>
+            </div>
+
+             
+
+
+
+
+            <p id="my_applications"></p>
+           <section class="dashboard-section" data-aos="fade-up">
+    <h2 id="your_projects" class="dashboard-page-heading">Your Project Applications</h2>
+    <div class="dashboard-project-grid">
+        {% for app in my_projects %}
+        <div class="dashboard-project-card" {% if app.status == "approved" %}onclick="window.location.href='{% url 'personal_project_details' app.project.id|default:app.id %}'"{% endif %}>
+            <h3><i class="fas fa-folder-open"></i>
+                {% if app.project %}
+                {{ app.project.title }}
+                {% else %}
+                {{ app.project_title }}
+                {% endif %}
+            </h3>
+            <p class="driving_question"><strong>Driving Question:</strong> {{ app.driving_question|default:"N/A" }}</p>
+            <strong><p>Status: {{ app.status }}</p></strong>
+            {% if app.status == "approved" or app.status == "approved_modification" %}
+            <p><strong>Approved Grant:</strong> ₹{{ app.approved_grant_amount }}</p>
+            {% endif %}
+        </div>
+        {% empty %}
+        <p>No applications yet.</p>
+        {% endfor %}
+    </div>
+</section>
+
+            <section class="dashboard-section" id="ipr_apps" data-aos="fade-up">
+                <h2 class="dashboard-page-heading">Your IPR Applications</h2>
+                <div class="dashboard-project-grid">
+                    {% for ipr in my_iprs %}
+                    <div class="dashboard-project-card">
+                        <h3><i class="fas fa-lightbulb"></i> {{ ipr.invention_title }}</h3>
+                        <p>Status: {{ ipr.status }}</p>
+                    </div>
+                    {% empty %}
+                    <p>No IPR applications yet.</p>
+                    {% endfor %}
+                </div>
+            </section>
+
+
+          
+
+            <div id="apply">
+
+            </div>
+          
+             
+        </div>
+    </section>
+
+    <section >
+          <div  data-aos="fade-up" style="margin-top: 30px; text-align: center;">
+                <a href="{% url 'apply_for_project' 0 %}" class="dashboard-cta-btn"><i
+                        class="fas fa-file-signature"></i> Apply for Poc</a>
+                <a href="{% url 'apply_for_ipr' %}" class="dashboard-cta-btn"><i class="fas fa-scale-balanced"></i>
+                    Apply for IPR</a>
+            </div>
+    </section>
+
+    <section class="dashboard-section section-spacing" id="about_ssip">
+        <div class="container">
+            <h2 class="dashboard-page-heading" data-aos="fade-up">About SSIP</h2>
+            <div class="dashboard-about-ssip-grid">
+                <div class="dashboard-about-ssip-text" data-aos="fade-right">
+                    <h1>SSIP at P P Savani University</h1>
+                    <p>
+                        The Student Startup and Innovation Policy (SSIP) at P P Savani University helps students and
+                        researchers turn
+                        their creative ideas into real projects and start-ups. It encourages innovation and supports
+                        young minds to
+                        think differently, solve problems, and build something useful for society.
+                    </p>
+
+                    <p>
+                        SSIP gives students a chance to work on new and unique ideas. These ideas should be practical,
+                        creative, and
+                        useful. If you have a project or solution that can make a difference, SSIP is here to help you
+                        make it happen.
+                    </p>
+
+                    <p>
+                        One of the biggest benefits of SSIP is financial help. You can get up to ₹2.5 lakhs for building
+                        your
+                        prototype or working model. If your idea needs protection through patents or copyright, you can
+                        also get up to
+                        ₹75,000 for IPR (Intellectual Property Rights) support.
+                    </p>
+
+                    <p>
+                        SSIP also connects you with industry experts and mentors who guide you in improving your idea,
+                        building your
+                        product, and understanding the market. You will also get to learn about entrepreneurship and how
+                        start-ups
+                        work, which will help you in your future career.
+                    </p>
+
+                    <p>
+                        At P P Savani University, we believe in supporting young innovators. Through SSIP, we aim to
+                        create an
+                        environment where students can confidently share their ideas and grow into future entrepreneurs
+                        and leaders.
+                    </p>
+                    </p>
+                </div>
+                <div class="about-ssip-highlights" data-aos="fade-left">
+                    <div class="highlight-item">
+                        <i class="fas fa-lightbulb"></i>
+                        <span>Encourages innovation and supports young minds.</span>
+                    </div>
+                    <div class="highlight-item">
+                        <i class="fas fa-hand-holding-usd"></i>
+                        <span>Financial help up to **₹2.5 lakhs** for prototyping and working models.</span>
+                    </div>
+                    <div class="highlight-item">
+                        <i class="fas fa-copyright"></i>
+                        <span>IPR (Intellectual Property Rights) support up to **₹75,000**.</span>
+                    </div>
+                    <div class="highlight-item">
+                        <i class="fas fa-users-rays"></i>
+                        <span>Connects with **industry experts** and mentors.</span>
+                    </div>
+                    <div class="highlight-item">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>Fosters future **entrepreneurs and leaders**.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="dashboard-section section-spacing" id="ssip_coordinators">
+        <div class="container">
+            <h2 data-aos="fade-up" class="dashboard-page-heading">Our SSIP Coordinators</h2>
+
+            <div class="dashboard-coordinators-top">
+                <div data-aos="fade-right">
+                    <div class="coordinator-card">
+                        <img src="/static/Images/coordinators/Bindesh_patel2.png" alt="Dr. Bindesh Patel">
+                        <h3>Dr. Bindesh Patel</h3>
+                        <p>Dr. Bindesh Patel <br> Deputy Registrar</p>
+                    </div>
+                </div>
+                <div data-aos="fade-left">
+                    <div class="coordinator-card">
+                        <img src="/static/Images/coordinators/Chirag_desai3.png" alt="Mr. Chirag Desai">
+                        <h3>Mr. Chirag Desai</h3>
+                        <p>Mr. Chirag Desai<br> School of Engineering.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div data-aos="fade-up" class="dashboard-coordinators-grid" w3-animate-zoom>
+                <div class="coordinator-card">
+                    <img src="/static/Images/coordinators/Amit_sharma2.png" alt="Dr. Amit Sharma">
+                    <h3>Dr Amit Sharma</h3>
+                    <p>Dr Amit Sharma <br> School of Engineering.</p>
+                </div>
+                <div class="coordinator-card">
+                    <img src="/static/Images/coordinators/Ashutosh_kumar2.png" alt="Dr. Ashutosh Kumar">
+                    <h3>Dr Ashutosh Kumar</h3>
+                    <p>Dr Ashutosh Kumar <br> School of Science.</p>
+                </div>
+                <div class="coordinator-card">
+                    <img src="/static/Images/coordinators/Balraj_tudu2.png" alt="Dr. Balraj Tudu">
+                    <h3>Dr Balraj Tudu</h3>
+                    <p>Dr Balraj Tudu <br> School of Engineering.</p>
+                </div>
+                <div class="coordinator-card">
+                    <img src="/static/Images/coordinators/Chirag_khambhu.png" alt="Dr. Chirag Khambhu">
+                    <h3>Dr Chirag Khambhu</h3>
+                    <p>Dr Chirag Khambhu <br> School of Agriculture.</p>
+                </div>
+                <div class="coordinator-card">
+                    <img src="/static/Images/coordinators/Mona_patel2.png" alt="Dr. Mona G Patel">
+                    <h3>Dr Mona G Patel</h3>
+                    <p>Dr Mona G Patel <br> School of Physiotherapy.</p>
+                </div>
+                <div class="coordinator-card">
+                    <img src="/static/Images/coordinators/Nehal_suthar.png" alt="Dr. Nehal Suthar">
+                    <h3>Dr Nehal Suthar</h3>
+                    <p>Dr Nehal Suthar <br> School of Homeopathy.</p>
+                </div>
+                <div class="coordinator-card">
+                    <img src="/static/Images/coordinators/Riddhish_joshi.png" alt="Dr. Riddhish Joshi">
+                    <h3>Dr Riddhish Joshi</h3>
+                    <p>Dr Riddhish Joshi <br> School of Management.</p>
+                </div>
+                <div class="coordinator-card">
+                    <img src="/static/Images/coordinators/Riya_sukla.png" alt="Mrs. Riya Sukla">
+                    <h3>Mrs Riya Sukla</h3>
+                    <p>Mrs Riya Sukla <br> School of Nursing.</p>
+                </div>
+                <div class="coordinator-card">
+                    <img src="/static/Images/coordinators/Swati_deo.png" alt="Prof. Swati Deo">
+                    <h3>Prof. Swati Deo</h3>
+                    <p>Prof. Swati Deo <br> School of Agriculture.</p>
+                </div>
+                <div class="coordinator-card">
+                    <img src="/static/Images/coordinators/Vimal_patel.png" alt="Dr. Vimal Patel">
+                    <h3>Dr Vimal Patel</h3>
+                    <p>Dr Vimal Patel <br> School of Pharmacy.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="container">
+            <p>&copy; 2025 P P Savani University. All rights reserved.</p>
+            <p>SSIP | P P Savani University, Gujarat | PP Savani university entrepreneurs Business Club (EBC)</p>
+            <div class="social-icons">
+               
+                <a href="https://chat.whatsapp.com/ISL1fpgy4OGC8ISPSS26N0" aria-label="Whatsapp"><i
+                        class="fab fa-whatsapp"></i></a>
+                <a href="https://www.linkedin.com/company/ppsu-ebc/posts/?feedView=all" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://www.instagram.com/ppsu_ebc/" aria-label="Instagram"><i
+                        class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        // AOS Initialization
+        AOS.init({ duration: 1000, once: false }); // 'once: true' makes animations run only once per element
+
+        // Header Sticky Effect
+        window.addEventListener('scroll', function () {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile Navigation Toggle
+        const navToggle = document.querySelector('.nav-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        navToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Smooth Scroll for Navigation Links (and close mobile menu)
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                // Close mobile menu if open
+                if (navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                }
+                // Scroll to section
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Logout Button Functionality (retained original logic)
+        document.getElementById('logoutBtn').addEventListener('click', function () {
+            if (confirm('Are you sure you want to log out?')) {
+                document.getElementById('logoutForm').submit();
+            }
+        });
+
+        // Slideshow Logic (enhanced for full manual/auto control)
+        let slideIndex = 1; // Tracks current slide
+        let slideTimer; // Holds the timeout ID for auto-advance
+
+        function showSlides(n) {
+            let i;
+            let slides = document.getElementsByClassName("mySlides");
+            let dots = document.getElementsByClassName("dot");
+
+            // Handle slide index for auto-advance or manual click
+            if (n === undefined) { // If called without argument, it's auto-advance
+                slideIndex++;
+            } else { // If called with argument (from dot/arrow click)
+                slideIndex = n;
+            }
+
+            // Loop back to start/end if out of bounds
+            if (slideIndex > slides.length) { slideIndex = 1 }
+            if (slideIndex < 1) { slideIndex = slides.length }
+
+            // Hide all slides
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            // Deactivate all dots
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active-dot", "");
+            }
+
+            // Display current slide and activate corresponding dot
+            slides[slideIndex - 1].style.display = "block";
+            dots[slideIndex - 1].className += " active-dot";
+
+            // Reset the auto-advance timer whenever a slide is shown (manual or auto)
+            clearTimeout(slideTimer);
+            slideTimer = setTimeout(showSlides, 4500); // Change image every 5 seconds
+        }
+
+        // Next/previous controls (called by arrow clicks)
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        // Thumbnail image controls (called by dot clicks)
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+
+        // Initial call to start the slideshow on page load
+        showSlides();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,248 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Apply for IPR - Grantpilot</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Raleway:wght@700&display=sw"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <style>
+    /* Reusing styles from project_details.html and apply_for_project.html */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background: #f4f4f3;
+      color: #040405;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 2vw;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      flex-wrap: wrap;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo {
+      height: 65px;
+      transition: transform 0.2s ease;
+    }
+
+    .logo:hover {
+      transform: scale(1.05);
+    }
+
+    .dashboard-page-heading {
+      text-align: center;
+      font-size: 2.5rem;
+      color: #da1f21;
+      font-family: 'Raleway', sans-serif;
+      margin-top: 40px;
+    }
+
+    .section-card {
+      background: #fffffa;
+      border-left: 5px solid #da1f21;
+      border-radius: 12px;
+      padding: 30px;
+      margin: 30px auto;
+      max-width: 95%;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #1076b9;
+      font-family: 'Raleway', sans-serif;
+      margin-bottom: 25px;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+    }
+
+    .info-grid label {
+      font-weight: 600;
+      margin-bottom: 6px;
+      display: block;
+      color: #444;
+    }
+
+    .info-grid input[type="text"],
+    .info-grid input[type="email"],
+    .info-grid input[type="number"],
+    .info-grid textarea {
+      width: 100%;
+      min-height: 40px;
+      resize: vertical;
+      font-size: 1rem;
+      padding: 10px 15px;
+      font-family: 'Open Sans', sans-serif;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background: #f9f9f9;
+      color: #333;
+      line-height: 1.4;
+    }
+
+    .info-grid textarea {
+        min-height: 100px;
+    }
+
+    .button-container {
+        display: flex;
+        justify-content: center;
+        gap: 20px; /* Space between buttons */
+        margin: 50px auto;
+        max-width: 95%;
+    }
+
+    .btn-submit, .btn-back {
+      background-color: #1076b9;
+      color: #fff;
+      padding: 12px 28px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+      text-decoration: none; /* For the anchor tag styled as a button */
+      display: inline-block; /* To allow gap to work */
+    }
+
+    .btn-submit:hover, .btn-back:hover {
+     background-color: #0a5a8d;
+      transform: translateX(5px);
+      transform: translateY(-5px);
+    }
+
+    @media (max-width: 768px) {
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .dashboard-page-heading {
+        font-size: 2rem;
+      }
+
+      .section-card {
+        padding: 20px;
+      }
+
+      .button-container {
+        flex-direction: column; /* Stack buttons on smaller screens */
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="header-left">
+      <img class="logo" src="{% static 'Images/Logo/ppsu.png' %}" alt="P P Savani University Logo">
+      <img class="logo" src="{% static 'Images/Logo/1.png' %}" alt="University Logo">
+      <img class="logo" src="{% static 'Images/Logo/ebc.png' %}" alt="EBC Logo">
+      <img class="logo" src="{% static 'Images/Logo/ssip.png' %}" alt="SSIP Logo">
+    </div>
+  </header>
+
+  <main>
+    <h1 class="dashboard-page-heading">Apply for IPR</h1>
+
+    <form method="post">
+      {% csrf_token %}
+
+      <div class="section-card">
+        <div class="section-title">💡 Invention Details</div>
+        <div class="info-grid">
+          <div><label for="id_invention_title">Invention Title:</label><input type="text" name="invention_title" id="id_invention_title" required></div>
+          <div><label for="id_patent_description">Patent Description:</label><textarea name="patent_description" id="id_patent_description" required></textarea></div>
+          <div><label for="id_num_team_members">Number of Team Members:</label><input type="number" name="num_team_members" id="id_num_team_members" min="1" required></div>
+        </div>
+      </div>
+
+      <div class="section-card">
+        <div class="section-title">👨‍💼 Leader Details</div>
+        <div class="info-grid">
+          <div><label for="id_leader_name">Name:</label><input type="text" name="leader_name" id="id_leader_name" required></div>
+          <div><label for="id_leader_email">Email:</label><input type="email" name="leader_email" id="id_leader_email" required></div>
+          <div><label for="id_leader_phone">Phone:</label><input type="text" name="leader_phone" id="id_leader_phone" required></div>
+          <div><label for="id_leader_enrollment">Enrollment:</label><input type="text" name="leader_enrollment" id="id_leader_enrollment" required></div>
+          <div><label for="id_leader_school">School:</label><input type="text" name="leader_school" id="id_leader_school" required></div>
+          <div><label for="id_leader_department">Department:</label><input type="text" name="leader_department" id="id_leader_department" required></div>
+          <div><label for="id_leader_semester">Semester:</label><input type="text" name="leader_semester" id="id_leader_semester" required></div>
+        </div>
+      </div>
+
+      <div class="section-card">
+        <div class="section-title">🎓 Mentor Details</div>
+        <div class="info-grid">
+          <div><label for="id_mentor_name">Name:</label><input type="text" name="mentor_name" id="id_mentor_name" required></div>
+          <div><label for="id_mentor_email">Email:</label><input type="email" name="mentor_email" id="id_mentor_email" required></div>
+          <div><label for="id_mentor_phone">Phone:</label><input type="text" name="mentor_phone" id="id_mentor_phone" required></div>
+          <div><label for="id_mentor_school">School:</label><input type="text" name="mentor_school" id="id_mentor_school" required></div>
+          <div><label for="id_mentor_designation">Designation:</label><input type="text" name="mentor_designation" id="id_mentor_designation" required></div>
+        </div>
+      </div>
+
+      <div class="section-card">
+        <div class="section-title">🎓 Co-Mentor Details (Optional)</div>
+        <div class="info-grid">
+          <div><label for="id_co_mentor_name">Name:</label><input type="text" name="co_mentor_name" id="id_co_mentor_name"></div>
+          <div><label for="id_co_mentor_email">Email:</label><input type="email" name="co_mentor_email" id="id_co_mentor_email"></div>
+        </div>
+      </div>
+
+      {% for i in "1234" %}
+      <div class="section-card">
+        <div class="section-title">👥 Member {{ forloop.counter }} Details (Optional)</div>
+        <div class="info-grid">
+          <div><label for="id_member{{ i }}_name">Name:</label><input type="text" name="member{{ i }}_name" id="id_member{{ i }}_name"></div>
+          <div><label for="id_member{{ i }}_email">Email:</label><input type="email" name="member{{ i }}_email" id="id_member{{ i }}_email"></div>
+          <div><label for="id_member{{ i }}_phone">Phone:</label><input type="text" name="member{{ i }}_phone" id="id_member{{ i }}_phone"></div>
+          <div><label for="id_member{{ i }}_department">Department:</label><input type="text" name="member{{ i }}_department" id="id_member{{ i }}_department"></div>
+          <div><label for="id_member{{ i }}_school">School:</label><input type="text" name="member{{ i }}_school" id="id_member{{ i }}_school"></div>
+          <div><label for="id_member{{ i }}_enrollment">Enrollment:</label><input type="text" name="member{{ i }}_enrollment" id="id_member{{ i }}_enrollment"></div>
+          <div><label for="id_member{{ i }}_semester">Semester:</label><input type="text" name="member{{ i }}_semester" id="id_member{{ i }}_semester"></div>
+        </div>
+      </div>
+      {% endfor %}
+
+      <div class="button-container">
+        <button type="submit" class="btn-submit">Submit Request</button>
+        <a href="{% url 'student_dashboard' %}" class="btn-back">← Cancel</a>
+      </div>
+    </form>
+  </main>
+
+</body>
+
+</html>

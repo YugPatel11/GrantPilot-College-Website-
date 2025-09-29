@@ -1,0 +1,184 @@
+{# app/templates/student/upload_utilization_certificate.html #}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Upload Utilization Certificate - Grantpilot</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Raleway:wght@700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <style>
+    /* Add some basic styling for the form */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background: #f4f4f3;
+      color: #040405;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 2vw;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      flex-wrap: wrap;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo {
+      height: 65px;
+      transition: transform 0.2s ease;
+    }
+
+    .logo:hover {
+      transform: scale(1.05);
+    }
+
+    .dashboard-page-heading {
+      text-align: center;
+      font-size: 2.5rem;
+      color: #da1f21;
+      font-family: 'Raleway', sans-serif;
+      margin-top: 40px;
+    }
+
+    .form-container {
+      background: #fffffa;
+      border-left: 5px solid #da1f21;
+      border-radius: 12px;
+      padding: 30px;
+      margin: 30px auto;
+      max-width: 600px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    }
+
+    .form-title {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #1076b9;
+      font-family: 'Raleway', sans-serif;
+      margin-bottom: 25px;
+      text-align: center;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #444;
+    }
+
+    .form-group input[type="file"],
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-family: 'Open Sans', sans-serif;
+      background: #f9f9f9;
+      color: #333;
+    }
+
+    .form-group textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .form-actions {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 30px;
+    }
+
+    .form-actions button {
+      background-color: #1076b9;
+      color: #fff;
+      padding: 12px 28px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .form-actions button[type="submit"]:hover {
+      background-color: #0a5a8d;
+    }
+
+    .form-actions button.cancel {
+      background-color: #6c757d;
+    }
+
+    .form-actions button.cancel:hover {
+      background-color: #5a6268;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="header-left">
+      <img class="logo" src="{% static 'Images/Logo/ppsu.png' %}" alt="P P Savani University Logo">
+      <img class="logo" src="{% static 'Images/Logo/1.png' %}" alt="University Logo">
+      <img class="logo" src="{% static 'Images/Logo/ebc.png' %}" alt="EBC Logo">
+      <img class="logo" src="{% static 'Images/Logo/ssip.png' %}" alt="SSIP Logo">
+    </div>
+  </header>
+
+  <main>
+    <h1 class="dashboard-page-heading">
+      Upload Utilization Certificate for {{ project.title }}
+    </h1>
+
+    <div class="form-container">
+      <div class="form-title">Upload Certificate</div>
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="certificate_image">Certificate Image:</label>
+          <input type="file" id="certificate_image" name="certificate_image" accept="image/*" required>
+        </div>
+        <div class="form-group">
+          <label for="description">Description (Optional):</label>
+          <textarea id="description" name="description" rows="5"></textarea>
+        </div>
+        <div class="form-actions">
+          <button type="submit">Upload Certificate</button>
+          <button type="button" class="cancel" onclick="window.history.back()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </main>
+
+</body>
+
+</html>

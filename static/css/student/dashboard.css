@@ -1,0 +1,1246 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    background: #f8f8f8;
+    color: #2c3e50;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* General heading styles - NO SHADOWS HERE */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 700;
+    color: #2c3e50;
+    /* Revert to a standard dark color for clarity */
+    text-shadow: none;
+    /* REMOVED ALL SHADOWS */
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* UTILITY CLASSES */
+.container {
+
+    margin: 0 auto;
+    padding: 0px 20px;
+
+}
+
+.hero_container {
+    max-width: 1700px;
+    margin: 0 auto;
+    padding: 150px 20px;
+
+}
+
+.section-spacing {
+    padding: 80px 0;
+}
+
+/* HEADER */
+header {
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 40px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: all 0.3s ease-in-out;
+    width: 100%;
+}
+
+header.scrolled {
+    padding: 10px 40px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.logo {
+    height: 55px;
+    transition: transform 0.2s ease;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+}
+
+.nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: #da1f21;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.nav-toggle:hover {
+    color: #1076b9;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    font-size: 0.95rem;
+}
+
+.nav-links a {
+    font-weight: 600;
+    color: #555;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: #da1f21;
+    transition: width 0.3s ease;
+    border-radius: 2px;
+}
+
+.nav-links a:hover {
+    color: #da1f21;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.logout-btn {
+    background: #1076b9;
+    color: #fff;
+    padding: 8px 18px;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: background 0.3s ease, transform 0.2s ease;
+    align-items: center;
+    gap: 8px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(16, 118, 185, 0.2);
+}
+
+.logout-btn:hover {
+    background: #0a5a8d;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(16, 118, 185, 0.3);
+}
+
+.video-section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    /* Full screen height */
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.video-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+/* Optional overlay for better text readability */
+.video-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Dark transparent overlay */
+    z-index: 0;
+}
+
+.video-content {
+    position: relative;
+    z-index: 1;
+    color: #fff;
+    padding: 0 20px;
+}
+
+.video-content h2 {
+    font-size: 4.8rem;
+    margin-bottom: 20px;
+    font-weight: 800;
+    color: #fff;
+    /* White text for contrast on dark background */
+    /* *** ONLY THIS SHADOW REMAINS *** */
+    text-shadow:
+        3px 3px 0px rgba(0, 0, 0, 0.3),
+        /* Main shadow for depth */
+        6px 6px 0px rgba(0, 0, 0, 0.2);
+    /* Deeper, softer shadow */
+
+}
+
+.video-content p {
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* HERO SECTION */
+.hero {
+    background: linear-gradient(105deg, #da1f21 40%, #1076b9 100%);
+    color: #fff;
+    text-align: center;
+    padding: 100px 40px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Subtle animated background pattern */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0.1) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.1) 75%, transparent 75%, transparent);
+    background-size: 40px 40px;
+    opacity: 0.1;
+    animation: moveBackground 20s linear infinite;
+}
+
+@keyframes moveBackground {
+    from {
+        background-position: 0 0;
+    }
+
+    to {
+        background-position: 400px 0;
+    }
+}
+
+.hero h1 {
+    font-size: 4.8rem;
+    margin-bottom: 20px;
+    font-weight: 800;
+    color: #fff;
+    /* White text for contrast on dark background */
+    /* *** ONLY THIS SHADOW REMAINS *** */
+    text-shadow:
+        3px 3px 0px rgba(0, 0, 0, 0.3),
+        /* Main shadow for depth */
+        6px 6px 0px rgba(0, 0, 0, 0.2);
+    /* Deeper, softer shadow */
+}
+
+.hero p {
+    font-size: 1.6rem;
+    max-width: 900px;
+    margin: auto;
+    line-height: 1.6;
+    opacity: 0.95;
+}
+
+/* GLOBAL SECTION STYLING */
+.dashboard-section {
+    background: #fff;
+    padding: 60px 0;
+    margin: 40px 0;
+    /* Removed background image from here */
+    position: static;
+    width: 100%;
+    /* Reset position as it's no longer needed for ::before here */
+}
+.dashboard-section section-spacing{
+    width: 100%;
+    margin: 0%;
+    padding: 0%;
+}
+/* Removed ::before from .dashboard-section */
+/* .dashboard-section::before { ... } */
+
+/* Ensure content inside .dashboard-section is above the overlay */
+.dashboard-section .container {
+    position: relative;
+    z-index: 2;
+}
+
+
+.dashboard-page-heading {
+    text-align: center;
+    color: #da1f21;
+    /* Reverted to red for clarity */
+    font-family: 'Raleway', sans-serif;
+    font-size: 2.8rem;
+    margin-bottom: 40px;
+    position: relative;
+    padding-bottom: 15px;
+    text-shadow: none;
+    /* REMOVED SHADOW */
+}
+
+.dashboard-page-heading::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: #1076b9;
+    border-radius: 2px;
+}
+
+/* SLIDESHOW */
+.slideshow-wrapper {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    overflow: hidden;
+    margin-bottom: 50px;
+    background-color: #f0f0f0;
+}
+
+.slideshow-container {
+    width: 100%;
+    position: relative;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.mySlides {
+    display: none;
+    width: 100%;
+}
+
+.mySlides img {
+    width: 100%;
+    height: 800px;
+    object-fit: cover;
+    display: block;
+}
+
+.prev,
+.next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: auto;
+    padding: 18px;
+    color: white;
+    font-weight: bold;
+    font-size: 22px;
+    transition: 0.6s ease;
+    border-radius: 0 5px 5px 0;
+    user-select: none;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 10;
+}
+
+.next {
+    right: 0;
+    border-radius: 5px 0 0 5px;
+}
+
+.prev:hover,
+.next:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.text {
+    color: #fff;
+    font-size: 1.2rem;
+    padding: 10px 15px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+}
+
+.dot-container {
+    text-align: center;
+    padding: 20px 0;
+    background: #fff;
+    margin-top: 0;
+    position: relative;
+    z-index: 1;
+}
+
+.dot {
+    cursor: pointer;
+    height: 14px;
+    width: 14px;
+    margin: 0 4px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease, transform 0.3s ease;
+}
+
+.active-dot,
+.dot:hover {
+    background-color: #da1f21;
+    transform: scale(1.2);
+}
+
+.fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+
+.steps {
+    width: 100%;
+}
+
+@keyframes fade {
+    from {
+        opacity: .4
+    }
+
+    to {
+        opacity: 1
+    }
+}
+
+
+
+#grant-totals-section {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+/* Styles for each individual card */
+#grant-totals-section .card {
+    flex: 1;
+    /* Make the cards take up equal space */
+    background-color: #ffffff;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 20px;
+    text-align: center;
+}
+
+#grant-totals-section .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* Styles for the card title */
+#grant-totals-section .card-title {
+    font-size: 1rem;
+    color: #6c757d;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 500;
+}
+
+/* Styles for the grant amount number */
+#grant-totals-section .card-text {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #007bff;
+    /* A prominent color for the numbers */
+    margin: 0;
+}
+
+#grant-totals-section,
+#project-status-section {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+/* Styles for each individual card */
+#grant-totals-section .card,
+#project-status-section .card {
+    flex: 1;
+    /* Make the cards take up equal space */
+    background-color: #ffffff;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 20px;
+    text-align: center;
+}
+
+#grant-totals-section .card:hover,
+#project-status-section .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* Styles for the card title */
+#grant-totals-section .card-title,
+#project-status-section .card-title {
+    font-size: 1rem;
+    color: #6c757d;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 500;
+}
+
+/* Styles for the grant amount number */
+#grant-totals-section .card-text {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #007bff;
+    /* A prominent color for the numbers */
+    margin: 0;
+}
+
+/* Styles for the project count numbers */
+#project-status-section .card-text.total {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #007bff;
+    margin: 0;
+}
+
+#project-status-section .card-text.approved {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #28a745;
+    /* Green for approved */
+    margin: 0;
+}
+
+#project-status-section .card-text.rejected {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #dc3545;
+    /* Red for rejected */
+    margin: 0;
+}
+
+/* PROJECT GRID */
+.dashboard-project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+.dashboard-project-card {
+    background: #fdfdfd;
+    border-left: 6px solid #da1f21;
+    border-radius: 12px;
+    padding: 25px;
+    max-width: 280px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.dashboard-project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.18);
+}
+
+.dashboard-project-card h3 {
+    color: #1076b9;
+    overflow: hidden;
+    font-size: 1.6rem;
+    margin-bottom: 12px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    font-weight: 700;
+    text-shadow: none;
+    /* REMOVED SHADOW */
+}
+
+.clamp-4 {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+.dashboard-project-card p {
+    color: #555;
+    margin-bottom: 10px;
+    font-size: 1.05rem;
+}
+
+.driving_question {
+    overflow: hidden;
+    resize: vertical;
+}
+
+.dashboard-card-actions {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.dashboard-edit-btn,
+.dashboard-delete-btn {
+    padding: 10px 18px;
+    border: none;
+    color: #fff;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.dashboard-edit-btn {
+    background: #da1f21;
+}
+
+.dashboard-edit-btn:hover {
+    background: #ba1b1d;
+    transform: translateY(-2px);
+}
+
+.dashboard-delete-btn {
+    background: #555;
+}
+
+.dashboard-delete-btn:hover {
+    background: #333;
+    transform: translateY(-2px);
+}
+
+.dashboard-cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin-top: 50px;
+    flex-wrap: wrap;
+}
+
+.dashboard-cta-btn {
+    background: #da1f21;
+    color: #fff;
+    text-decoration: none;
+    padding: 16px 28px;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 5px 15px rgba(218, 31, 33, 0.3);
+}
+
+.dashboard-cta-btn:hover {
+    background: #ba1b1d;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(218, 31, 33, 0.4);
+}
+
+/* ABOUT SSIP SECTION */
+.dashboard-about-ssip-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    margin-top: 40px;
+    align-items: flex-start;
+
+    /* Added background image for this section ONLY */
+    background-image: url('/static/Images/p-p-savani-university-surat-350248\ -\ Copy.jpg');
+    /* Replace with your desired image path */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    position: relative;
+    /* Needed for the ::before pseudo-element */
+    padding: 30px;
+    /* Add some padding to see the background */
+    border-radius: 12px;
+    /* Match highlight item */
+    overflow: hidden;
+    /* To contain the pseudo-element */
+}
+
+/* Overlay for About SSIP section to improve text readability */
+.dashboard-about-ssip-grid::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+    /* White overlay with 80% opacity */
+    z-index: 1;
+    /* Place overlay behind text but above background image */
+}
+
+/* Ensure content inside .dashboard-about-ssip-grid is above the overlay */
+.dashboard-about-ssip-text,
+.about-ssip-highlights {
+    position: relative;
+    /* Essential to make z-index effective */
+    z-index: 2;
+    /* Ensure content is above the overlay */
+}
+
+
+.dashboard-about-ssip-text {
+    flex: 1 1 45%;
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.8;
+}
+
+.dashboard-about-ssip-text h2 {
+    color: #1076b9;
+    /* Reverted to blue for clarity */
+    font-family: 'Raleway', sans-serif;
+    font-size: 2.5rem;
+    margin-bottom: 25px;
+    font-weight: 700;
+    text-shadow: none;
+    /* REMOVED SHADOW */
+}
+
+.dashboard-about-ssip-text h1 {
+    color: #2c3e50;
+    /* Reverted to dark gray for clarity */
+    font-size: 2.2rem;
+    margin-bottom: 15px;
+    font-weight: 700;
+    text-shadow: none;
+    /* REMOVED SHADOW */
+}
+
+.dashboard-about-ssip-text p {
+    margin-bottom: 15px;
+}
+
+.about-ssip-highlights {
+    flex: 1 1 45%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 30px;
+    background: #f0f8ff;
+    /* This background will now be layered on top of the grid's background image + overlay */
+    border-radius: 12px;
+    box-shadow: inset 0 0 15px rgba(16, 118, 185, 0.1);
+}
+
+.highlight-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 1.1rem;
+    color: #333;
+}
+
+.highlight-item i {
+    font-size: 2rem;
+    color: #da1f21;
+    min-width: 40px;
+    text-align: center;
+}
+
+.highlight-item strong {
+    color: #1076b9;
+    font-weight: 700;
+}
+
+/* COORDINATORS SECTION */
+.dashboard-coordinators-top {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: 60px;
+    margin-bottom: 50px;
+    padding-top: 20px;
+}
+
+.dashboard-coordinators-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 40px;
+    margin-top: 20px;
+}
+
+.coordinator-card {
+    background: #fdfdfd;
+    padding: 25px;
+    max-width: 270px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #eee;
+}
+
+.coordinator-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+}
+
+.coordinator-card img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 4px solid #da1f21;
+    box-shadow: 0 0 0 6px rgba(218, 31, 33, 0.2);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.coordinator-card:hover img {
+    border-color: #1076b9;
+    box-shadow: 0 0 0 6px rgba(16, 118, 185, 0.2);
+}
+
+.coordinator-card h3 {
+    color: #1076b9;
+    /* Reverted to blue for clarity */
+    font-family: 'Raleway', sans-serif;
+    margin-bottom: 8px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-shadow: none;
+    /* REMOVED SHADOW */
+}
+
+.coordinator-card p {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* FOOTER */
+footer {
+    margin-top: 60px;
+    background: #1a2a3a;
+    color: #e0e0e0;
+    text-align: center;
+    padding: 30px 40px;
+    font-size: 0.95rem;
+    border-radius: 0;
+}
+
+footer a {
+    color: #a7d9ff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: #fff;
+}
+
+.footer-links {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.social-icons {
+    margin-top: 20px;
+    font-size: 1.8rem;
+}
+
+.social-icons a {
+    color: #e0e0e0;
+    margin: 0 12px;
+    transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: #da1f21;
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 992px) {
+    .hero h1 {
+        font-size: 3rem;
+    }
+
+    .hero p {
+        font-size: 1.2rem;
+    }
+
+    .dashboard-page-heading {
+        font-size: 2.4rem;
+    }
+
+    .dashboard-project-card {
+        padding: 20px;
+        max-width: 250px;
+        height: auto;
+    }
+
+    .dashboard-about-ssip-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+
+
+    .steps {
+        height: 180px;
+    }
+
+
+    .video-background {
+        width: 100%;
+        height: 200px;
+    }
+
+    .video-section {
+        width: 100%;
+        height: 200px;
+    }
+
+    .dot {
+        height: 8px;
+        width: 8px;
+    }
+
+    .video-section::before {
+        width: 100%;
+        height: auto;
+    }
+
+    .video-content {
+        padding: 10px;
+    }
+
+
+    .video-content h2 {
+        font-size: 1.0rem;
+        text-shadow:
+        2px 2px 0px rgba(0, 0, 0, 0.3),
+        /* Main shadow for depth */
+        2px 2px 0px rgba(0, 0, 0, 0.2);
+    }
+   
+
+    .video-content p {
+        font-size: 0.6rem;
+    }
+
+    .dashboard-about-ssip-text,
+    .about-ssip-highlights {
+        flex: 1 1 100%;
+    }
+
+    .mySlides img {
+        height: 350px;
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding: 15px 20px;
+    }
+
+    .header-left {
+        width: auto;
+        justify-content: flex-start;
+        margin-bottom: 0;
+        order: 1;
+    }
+
+    .header-left .logo {
+        height: 27px;
+    }
+
+
+
+    .nav-toggle {
+        display: block;
+        order: 2;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        width: 100%;
+        display: none;
+        gap: 15px;
+        padding-top: 15px;
+        border-top: 1px solid #eee;
+        margin-top: 15px;
+        order: 3;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links a,
+    .nav-links form {
+        width: 60%;
+        text-align: center;
+        padding: 10px 0;
+    }
+
+    .logout-btn {
+        width: fit-content;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .hero {
+        padding: 70px 20px;
+    }
+
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .video-content {
+        text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.3), 3px 3px 0px rgba(0, 0, 0, 0.2);
+    }
+
+    .dashboard-section {
+        padding: 40px 0;
+        margin: 30px 0;
+    }
+
+    .container {
+        padding: 0 15px;
+    }
+
+    .dashboard-project-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+
+    .dashboard-project-card h3 {
+        font-size: 1.2rem;
+    }
+
+    .dashboard-project-card {
+
+        padding: 20px;
+        max-width: 250px;
+        height: auto;
+    }
+
+
+    .dashboard-project-card p {
+        font-size: 0.9rem;
+    }
+
+    .dashboard-page-heading {
+        font-size: 2rem;
+    }
+
+    .dashboard-cta-buttons {
+
+        gap: 15px;
+    }
+
+    .dashboard-cta-btn {
+        font-size: 13px;
+
+        margin: 0 auto;
+        text-align: center;
+        justify-content: center;
+    }
+
+    .dashboard-about-ssip-text h2 {
+        font-size: 2rem;
+    }
+
+    .dashboard-about-ssip-text h1 {
+        font-size: 1.8rem;
+    }
+
+    .dashboard-about-ssip-text p {
+        font-size: 1rem;
+    }
+
+    .highlight-item {
+        font-size: 1rem;
+    }
+
+    .highlight-item i {
+        font-size: 1.6rem;
+    }
+
+
+    .coordinator-card img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .coordinator-card {
+        width: 100%;
+        max-width: 200px;
+        height: 300px;
+    }
+
+    .coordinator-card h3 {
+        font-size: 1.2rem;
+    }
+
+    .coordinator-card p {
+        line-height: 1.4;
+        font-size: 0.8rem;
+    }
+
+    .mySlides img {
+        height: 280px;
+    }
+
+    .text {
+        font-size: 1rem;
+    }
+
+    .dashboard-coordinators-top {
+        gap: 30px;
+        align-items: center;
+    }
+
+    .dashboard-coordinators-grid {
+        gap: 30px;
+        align-items: center;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+
+    footer {
+        font-size: 0.65rem;
+    }
+
+    .social-icons {
+        font-size: 1.4rem;
+    }
+
+}
+
+@media (max-width: 480px) {
+    .logo {
+        height: 15px;
+    }
+
+    .header-left {
+        flex-direction: row;
+        justify-content: center;
+        gap: 5px;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .hero p {
+        font-size: 0.9rem;
+    }
+
+    .dashboard-page-heading {
+        font-size: 1.3rem;
+    }
+
+    .dashboard-project-card {
+        padding: 20px;
+    }
+
+    .dashboard-project-card h3 {
+        font-size: 1.2rem;
+    }
+
+    .dashboard-about-ssip-text h2 {
+        font-size: 1.8rem;
+    }
+
+    .dashboard-about-ssip-text h1 {
+        font-size: 1.2rem;
+    }
+
+    .dashboard-about-ssip-text p {
+        font-size: 0.8rem;
+    }
+
+    .highlight-item {
+        font-size: 0.9rem;
+    }
+
+    .highlight-item i {
+        font-size: 1.4rem;
+    }
+
+    .mySlides img {
+        height: 220px;
+    }
+
+    .prev,
+    .next {
+        padding: 12px;
+        font-size: 18px;
+    }
+
+    .text {
+        font-size: 0.9rem;
+    }
+}

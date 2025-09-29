@@ -1,0 +1,343 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Approve IPR Request - Grantpilot</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background: #f4f4f3;
+      color: #040405;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 2vw;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      flex-wrap: wrap;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo {
+      height: 65px;
+      transition: transform 0.2s ease;
+    }
+
+    .logo:hover {
+      transform: scale(1.05);
+    }
+
+    .dashboard-page-heading {
+      text-align: center;
+      font-size: 1.5rem;
+      color: #da1f21;
+      font-family: 'Raleway', sans-serif;
+      margin-top: 40px;
+    }
+
+    .section-card {
+      background: #fffffa;
+      border-left: 5px solid #da1f21;
+      border-radius: 12px;
+      padding: 30px;
+      margin: 30px auto;
+      max-width: 95%;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #1076b9;
+      font-family: 'Raleway', sans-serif;
+      margin-bottom: 25px;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+    }
+
+    .info-grid label {
+      font-weight: 600;
+      margin-bottom: 6px;
+      display: block;
+      color: #444;
+    }
+
+    .info-grid textarea,
+    .info-grid input[type="number"],
+    .info-grid select {
+      width: 100%;
+      padding: 10px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background: #f9f9f9;
+      color: #333;
+      line-height: 1.4;
+    }
+
+    .info-grid textarea[readonly] {
+      background: #f4f4f3;
+    }
+
+    .no_team_members {
+      text-align: center;
+      color: #1076b9;
+    }
+
+    .info-grid p {
+      margin: 6px 0 15px;
+      font-size: 1rem;
+      color: #333;
+      background: #f9f9f9;
+      padding: 10px 14px;
+      border-radius: 6px;
+      border: 1px solid #ddd;
+      word-wrap: break-word;
+      word-break: break-word;
+      white-space: pre-wrap;
+      overflow-wrap: break-word;
+    }
+
+    .btn-back,
+    .btn-submit {
+      margin-top: 20px;
+      display: inline-block;
+      background-color: #1076b9;
+      color: #fff;
+      padding: 10px 22px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      text-decoration: none;
+    }
+
+    .btn-back:hover,
+    .btn-submit:hover {
+      background-color: #0a5a8d;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal.show {
+      display: flex;
+    }
+
+    .modal-content {
+      background-color: #fff;
+      padding: 30px 40px;
+      border-radius: 10px;
+      max-width: 400px;
+      width: 90%;
+      text-align: center;
+    }
+
+    .modal-actions {
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .cancel-btn,
+    .confirm-btn {
+      padding: 10px 20px;
+      font-weight: bold;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .cancel-btn {
+      background-color: #ddd;
+      color: #333;
+    }
+
+    .confirm-btn {
+      background-color: #1076b9;
+      color: white;
+    }
+
+    @media (max-width: 768px) {
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .dashboard-page-heading {
+        font-size: 2rem;
+      }
+
+      .section-card {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="header-left">
+      <img class="logo" src="{% static 'Images/Logo/ppsu.png' %}" alt="PPSU Logo">
+      <img class="logo" src="{% static 'Images/Logo/1.png' %}" alt="1 Logo">
+      <img class="logo" src="{% static 'Images/Logo/ebc.png' %}" alt="EBC Logo">
+      <img class="logo" src="{% static 'Images/Logo/ssip.png' %}" alt="SSIP Logo">
+    </div>
+  </header>
+
+  <h3 class="dashboard-page-heading">
+    Reviewing <strong>IPR</strong> request for <strong>{{ app.invention_title }}</strong> By
+    <strong>{{ app.leader_name }}</strong>
+  </h3>
+
+  <div class="section-card">
+    <div class="section-title">💡 Invention Details</div>
+    <div class="info-grid">
+      <p><strong>Invention Title:</strong> {{ app.invention_title }}</p>
+      <p><strong>Patent Description:</strong> {{ app.patent_description }}</p>
+      <p><strong>Number of Team Members:</strong> {{ app.num_team_members }}</p>
+    </div>
+  </div>
+
+  <div class="section-card">
+    <div class="section-title">👨‍💼 Leader Details</div>
+    <div class="info-grid">
+<p><strong>Name:</strong> {{ app.leader.name }}</p>
+      <p><strong>Email:</strong> {{ app.leader.email }}</p>
+      <p><strong>Enrollment ID:</strong> {{ app.leader.enrollment_id }}</p>
+      <p><strong>Semester:</strong> {{ app.leader.semester }}</p>
+      <p><strong>Phone:</strong> {{ app.leader.phone }}</p>
+      <p><strong>School:</strong> {{ app.leader.school }}</p>
+      <p><strong>Department:</strong> {{ app.leader.department }}</p>
+    </div>
+  </div>
+
+  <div class="section-card">
+    <div class="section-title">🎓 Mentor Details</div>
+    <div class="info-grid">
+      <p><strong>Name:</strong> {{ app.mentor.name }}</p>
+      <p><strong>Email:</strong> {{ app.mentor.email }}</p>
+      <p><strong>Phone:</strong> {{ app.mentor.phone }}</p>
+      <p><strong>School:</strong> {{ app.mentor.school }}</p>
+      <p><strong>Designation:</strong> {{ app.mentor.designation }}</p>
+    </div>
+  </div>
+
+  {% if app.co_mentor_name %}
+  <div class="section-card">
+    <div class="section-title">🎓 Co-Mentor Details</div>
+    <div class="info-grid">
+      <p><strong>Name:</strong> {{ app.co_mentor.name }}</p>
+      <p><strong>Email:</strong> {{ app.co_mentor.email }}</p>
+    </div>
+  </div>
+  {% endif %}
+
+  {% if app.members.all.exists %}
+  {% for member in app.members.all %}
+  <div class="section-card">
+    <div class="section-title">👥 Member {{ forloop.counter }}</div>
+    <div class="info-grid">
+      <p><strong>Name:</strong> {{ member.name }}</p>
+      <p><strong>Email:</strong> {{ member.email }}</p>
+      <p><strong>Enrollment ID:</strong> {{ member.enrollment_id }}</p>
+      <p><strong>Semester:</strong> {{ member.semester }}</p>
+      <p><strong>Phone:</strong> {{ member.phone }}</p>
+      <p><strong>School:</strong> {{ member.school }}</p>
+      <p><strong>Department:</strong> {{ member.department }}</p>
+    </div>
+  </div>
+  {% endfor %}
+  {% else %}
+  <p class="details no_team_members">No team members listed.</p>
+  {% endif %}
+
+  <div class="section-card">
+    <div class="section-title">✅ Action</div>
+    <form method="post" class="info-grid">
+      {% csrf_token %}
+      <label for="action"><strong>Action:</strong></label>
+      <select name="action" id="action">
+        <option value="approve">Approve</option>
+        <option value="reject">Reject</option>
+      </select>
+      <button type="button" class="btn-submit" id="triggerApproveModal">Submit Action</button>
+    </form>
+    
+    <a href="{% url 'student_requests' %}" class="btn-back">← Cancel</a>
+  </div>
+
+  <div id="confirmationModal" class="modal">
+    <div class="modal-content">
+      <p>Are you sure you want to submit this action?</p>
+      <div class="modal-actions">
+        <button id="cancelActionBtn" class="cancel-btn">Cancel</button>
+        <button id="confirmActionBtn" class="confirm-btn">Confirm</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('triggerApproveModal').addEventListener('click', function (e) {
+      e.preventDefault();
+      document.getElementById('confirmationModal').classList.add('show');
+    });
+
+    document.getElementById('cancelActionBtn').addEventListener('click', function () {
+      document.getElementById('confirmationModal').classList.remove('show');
+    });
+
+    document.getElementById('confirmActionBtn').addEventListener('click', function () {
+      this.closest('.modal').classList.remove('show');
+      document.querySelector('form').submit();
+    });
+
+    window.addEventListener('load', () => {
+      document.body.style.opacity = 1;
+      document.body.style.transition = 'opacity 0.5s ease-in-out';
+    });
+  </script>
+
+</body>
+
+</html>

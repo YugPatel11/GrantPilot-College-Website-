@@ -1,0 +1,467 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Apply for Grant - Grantpilot</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Raleway:wght@700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <style>
+    /* Reusing styles from project_details.html */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background: #f4f4f3;
+      color: #040405;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 2vw;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      flex-wrap: wrap;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo {
+      height: 65px;
+      transition: transform 0.2s ease;
+    }
+
+    .logo:hover {
+      transform: scale(1.05);
+    }
+
+    .dashboard-page-heading {
+      text-align: center;
+      font-size: 2.5rem;
+      color: #da1f21;
+      font-family: 'Raleway', sans-serif;
+      margin-top: 40px;
+    }
+
+    .section-card {
+      background: #fffffa;
+      border-left: 5px solid #da1f21;
+      border-radius: 12px;
+      padding: 30px;
+      margin: 30px auto;
+      max-width: 95%;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #1076b9;
+      font-family: 'Raleway', sans-serif;
+      margin-bottom: 25px;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+    }
+
+    .info-grid label {
+      font-weight: 600;
+      margin-bottom: 6px;
+      display: block;
+      color: #444;
+    }
+
+    .info-grid input[type="text"],
+    .info-grid input[type="email"],
+    .info-grid input[type="number"],
+    .info-grid textarea,
+    .info-grid select {
+      width: 100%;
+      min-height: 40px;
+      resize: vertical;
+      font-size: 1rem;
+      padding: 10px 15px;
+      font-family: 'Open Sans', sans-serif;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background: #f9f9f9;
+      color: #333;
+      line-height: 1.4;
+    }
+
+    .info-grid textarea {
+      min-height: 100px;
+    }
+
+    .info-grid input[type="checkbox"] {
+      margin-top: 10px;
+      width: auto;
+      min-height: unset;
+    }
+
+    .simple-info label {
+      font-weight: 600;
+      margin-bottom: 6px;
+      display: block;
+      color: #444;
+    }
+
+    .simple-info input[type="number"] {
+      width: 100%;
+      min-height: 40px;
+      font-size: 1rem;
+      padding: 10px 15px;
+      font-family: 'Open Sans', sans-serif;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background: #f9f9f9;
+      color: #333;
+      line-height: 1.4;
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin: 50px auto;
+      max-width: 95%;
+    }
+
+    .btn-submit,
+    .btn-back {
+      background-color: #1076b9;
+      color: #fff;
+      padding: 12px 28px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-submit:hover,
+    .btn-back:hover {
+      background-color: #0a5a8d;
+      transform: translateX(5px);
+      transform: translateY(-5px);
+    }
+
+    @media (max-width: 768px) {
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .dashboard-page-heading {
+        font-size: 2rem;
+      }
+
+      .section-card {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="header-left">
+      <img class="logo" src="{% static 'Images/Logo/ppsu.png' %}" alt="P P Savani University Logo">
+      <img class="logo" src="{% static 'Images/Logo/1.png' %}" alt="University Logo">
+      <img class="logo" src="{% static 'Images/Logo/ebc.png' %}" alt="EBC Logo">
+      <img class="logo" src="{% static 'Images/Logo/ssip.png' %}" alt="SSIP Logo">
+    </div>
+  </header>
+
+  <main>
+    <h1 class="dashboard-page-heading">
+      {% if project %}
+      Apply for Project: {{ project.title }}
+      {% else %}
+      Apply for Poc
+      {% endif %}
+    </h1>
+
+    <form method="post">
+      {% csrf_token %}
+
+      <div class="section-card">
+        <div class="section-title">📧 Application Details</div>
+        <div class="info-grid">
+          <div>
+            <label for="id_email">Email:</label>
+            <input type="email" name="email" id="id_email" required>
+          </div>
+          <div>
+            <label for="id_team_size">Team Size:</label>
+            <select name="team_size" id="id_team_size" required>
+              <option value="">-- Select Team Size --</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-card">
+        <div class="section-title">👨‍💼 Team Leader Details</div>
+        <div class="info-grid">
+          <div><label for="id_leader_name">Name:</label><input type="text" name="leader_name" id="id_leader_name"
+              required></div>
+          <div><label for="id_leader_email">Email:</label><input type="email" name="leader_email" id="id_leader_email"
+              required></div>
+          <div><label for="id_leader_enrollment">Enrollment ID:</label><input type="text" name="leader_enrollment"
+              id="id_leader_enrollment" required></div>
+          <div><label for="id_leader_semester">Semester:</label><input type="text" name="leader_semester"
+              id="id_leader_semester" required></div>
+          <div><label for="id_leader_phone">Phone:</label><input type="text" name="leader_phone" id="id_leader_phone"
+              required></div>
+          <div>
+            <label for="id_leader_school">School:</label>
+            <select name="leader_school" id="id_leader_school" required>
+                <option value="">-- Select School --</option>
+                <option value="School of Engineering">School of Engineering</option>
+                <option value="School of Sciences">School of Sciences</option>
+                <option value="School of Architecture & Design">School of Architecture & Design</option>
+                <option value="School of Liberal Arts & Management Studies">School of Liberal Arts & Management Studies</option>
+                <option value="School of Physiotherapy">School of Physiotherapy</option>
+                <option value="School of Nursing">School of Nursing</option>
+                <option value="School of Agriculture">School of Agriculture</option>
+                <option value="School of Pharmacy">School of Pharmacy</option>
+            </select>
+          </div>
+          <div>
+            <label for="id_leader_department">Department:</label>
+            <select name="leader_department" id="id_leader_department" required>
+              <option value="">-- Select Department --</option>
+              <option value="Computer Engineering">Computer Engineering</option>
+              <option value="Information Technology">Information Technology</option>
+              <option value="Mechanical Engineering">Mechanical Engineering</option>
+              <option value="Civil Engineering">Civil Engineering</option>
+              <option value="Electrical Engineering">Electrical Engineering</option>
+              <option value="Chemical Engineering">Chemical Engineering</option>
+              <option value="Biotechnology">Biotechnology</option>
+              <option value="Science">Science</option>
+              <option value="Commerce & Management">Commerce & Management</option>
+              <option value="Pharmacy">Pharmacy</option>
+              <option value="Architecture">Architecture</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-card">
+        <div class="section-title">🎓 Mentor Details</div>
+        <div class="info-grid">
+          <div><label for="id_mentor_name">Name:</label><input type="text" name="mentor_name" id="id_mentor_name"
+              required></div>
+          <div><label for="id_mentor_email">Email:</label><input type="email" name="mentor_email" id="id_mentor_email"
+              required></div>
+          <div><label for="id_mentor_phone">Phone:</label><input type="text" name="mentor_phone" id="id_mentor_phone"
+              required></div>
+          <div>
+            <label for="id_mentor_school">School:</label>
+            <select name="mentor_school" id="id_mentor_school" required>
+              <option value="">-- Select School --</option>
+                <option value="School of Engineering">School of Engineering</option>
+                <option value="School of Sciences">School of Sciences</option>
+                <option value="School of Architecture & Design">School of Architecture & Design</option>
+                <option value="School of Liberal Arts & Management Studies">School of Liberal Arts & Management Studies</option>
+                <option value="School of Physiotherapy">School of Physiotherapy</option>
+                <option value="School of Nursing">School of Nursing</option>
+                <option value="School of Agriculture">School of Agriculture</option>
+                <option value="School of Pharmacy">School of Pharmacy</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-card">
+        <div class="section-title">🎓 Co-Mentor Details (Optional)</div>
+        <div class="info-grid">
+          <div><label for="id_co_mentor_name">Name:</label><input type="text" name="co_mentor_name"
+              id="id_co_mentor_name"></div>
+          <div><label for="id_co_mentor_email">Email:</label><input type="email" name="co_mentor_email"
+              id="id_co_mentor_email"></div>
+        </div>
+      </div>
+
+      {% for i in "1234" %}
+      <div class="section-card">
+        <div class="section-title">👥 Member {{ forloop.counter }} Details (Optional)</div>
+        <div class="info-grid">
+          <div><label for="id_member{{ i }}_name">Name:</label><input type="text" name="member{{ i }}_name"
+              id="id_member{{ i }}_name" class="member-name"></div>
+          <div><label for="id_member{{ i }}_email">Email:</label><input type="email" name="member{{ i }}_email"
+              id="id_member{{ i }}_email"></div>
+          <div><label for="id_member{{ i }}_enrollment">Enrollment ID:</label><input type="text"
+              name="member{{ i }}_enrollment" id="id_member{{ i }}_enrollment"></div>
+          <div><label for="id_member{{ i }}_semester">Semester:</label><input type="text"
+              name="member{{ i }}_semester" id="id_member{{ i }}_semester"></div>
+          <div><label for="id_member{{ i }}_phone">Phone:</label><input type="text" name="member{{ i }}_phone"
+              id="id_member{{ i }}_phone"></div>
+          <div>
+            <label for="id_member{{ i }}_school">School:</label>
+            <select name="member{{ i }}_school" id="id_member{{ i }}_school" class="member-school" disabled>
+                <option value="">-- Select School --</option>
+                <option value="School of Engineering">School of Engineering</option>
+                <option value="School of Sciences">School of Sciences</option>
+                <option value="School of Architecture & Design">School of Architecture & Design</option>
+                <option value="School of Liberal Arts & Management Studies">School of Liberal Arts & Management Studies</option>
+                <option value="School of Physiotherapy">School of Physiotherapy</option>
+                <option value="School of Nursing">School of Nursing</option>
+                <option value="School of Agriculture">School of Agriculture</option>
+                <option value="School of Pharmacy">School of Pharmacy</option>
+            </select>
+          </div>
+          <div>
+            <label for="id_member{{ i }}_department">Department:</label>
+            <select name="member{{ i }}_department" id="id_member{{ i }}_department" class="member-department" disabled>
+              <option value="">-- Select Department --</option>
+              <option value="Computer Engineering">Computer Engineering</option>
+              <option value="Information Technology">Information Technology</option>
+              <option value="Mechanical Engineering">Mechanical Engineering</option>
+              <option value="Civil Engineering">Civil Engineering</option>
+              <option value="Electrical Engineering">Electrical Engineering</option>
+              <option value="Chemical Engineering">Chemical Engineering</option>
+              <option value="Biotechnology">Biotechnology</option>
+              <option value="Science">Science</option>
+              <option value="Commerce & Management">Commerce & Management</option>
+              <option value="Pharmacy">Pharmacy</option>
+              <option value="Architecture">Architecture</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+
+      <div class="section-card">
+        <div class="section-title">📁 Project Information</div>
+        <div class="info-grid">
+          <div><label for="id_project_title">Project Title:</label><input type="text" name="project_title"
+              id="id_project_title" {% if project %}value="{{ project.title }}" readonly{% endif %} required></div>
+          <div><label for="id_broad_area">Broad Area of Innovation/Startup:</label><textarea name="broad_area"
+              id="id_broad_area" {% if project %}readonly{% endif %} required>{% if project and project.broad_area %}{{ project.broad_area }}{% endif %}</textarea>
+          </div>
+          <div><label for="id_startup_name">Startup Name:</label><input type="text" name="startup_name"
+              id="id_startup_name" {% if project and project.startup_name %}value="{{ project.startup_name }}" readonly{% endif %}></div>
+          <div><label for="id_driving_question">Driving Question of the Proposed Startup:</label><textarea
+              name="driving_question" id="id_driving_question" {% if project %}readonly{% endif %} required>{% if project %}{{ project.driving_question }}{% endif %}</textarea>
+          </div>
+          <div><label for="id_major_problems">Major Problems the Startup Aims to Solve (by priority):</label><textarea
+              name="major_problems" id="id_major_problems" {% if project %}readonly{% endif %} required>{% if project %}{{ project.major_problems }}{% endif %}</textarea>
+          </div>
+          <div><label for="id_existing_alternatives">Existing Alternatives:</label><textarea
+              name="existing_alternatives" id="id_existing_alternatives" {% if project %}readonly{% endif %} required>{% if project %}{{ project.existing_alternatives }}{% endif %}</textarea>
+          </div>
+          <div><label for="id_proposed_solution">Proposed Solution:</label><textarea name="proposed_solution"
+              id="id_proposed_solution" {% if project %}readonly{% endif %} required>{% if project %}{{ project.proposed_solution }}{% endif %}</textarea>
+          </div>
+          <div><label for="id_unique_value_proposition">Unique Value Proposition:</label><textarea
+              name="unique_value_proposition" id="id_unique_value_proposition" {% if project %}readonly{% endif %} required>{% if project %}{{ project.unique_value_proposition }}{% endif %}</textarea>
+          </div>
+          <div><label for="id_early_adopters">Early Adopters / Potential Target Customers:</label><textarea
+              name="early_adopters" id="id_early_adopters" {% if project %}readonly{% endif %} required>{% if project %}{{ project.early_adopters }}{% endif %}</textarea>
+          </div>
+          <div><label for="id_sustainability_plan">Sustainability Plans:</label><textarea name="sustainability_plan"
+              id="id_sustainability_plan" {% if project %}readonly{% endif %} required>{% if project %}{{ project.sustainability_plan }}{% endif %}</textarea>
+          </div>
+          <div><label for="id_timeline">Timeline for Final Proof of Concept/Prototype:</label><textarea
+              name="timeline" id="id_timeline" {% if project %}readonly{% endif %} required>{% if project %}{{ project.timeline }}{% endif %}</textarea>
+          </div>
+          <div>
+            <label for="id_ipr_potential">Does the proposed startup have IPR potential?</label>
+            <input type="checkbox" name="ipr_potential" id="id_ipr_potential"
+              {% if project and project.ipr_potential %}checked onclick="return false;"{% endif %}>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-card">
+        <div class="section-title">💰 Financial Details</div>
+        <div class="simple-info">
+          <p><label for="id_financial_consumables"><strong>Consumables / Raw Materials / Minor Works:</strong> ₹</label>
+            <input type="number" name="financial_consumables" id="id_financial_consumables"
+              {% if project %}value="{{ project.financial_consumables }}" readonly{% endif %} required></p>
+          <p><label for="id_financial_mentoring"><strong>Mentoring Outside PPSU:</strong> ₹</label><input type="number"
+              name="financial_mentoring" id="id_financial_mentoring"
+              {% if project %}value="{{ project.financial_mentoring }}" readonly{% endif %} required></p>
+          <p><label for="id_financial_total"><strong>Total Financial Support Required:</strong> ₹</label><input
+              type="number" name="financial_total" id="id_financial_total"
+              {% if project %}value="{{ project.financial_total }}" readonly{% endif %} required></p>
+        </div>
+      </div>
+
+      <div class="button-container">
+        <button type="submit" class="btn-submit">Submit Request</button>
+        <a href="{% url 'student_dashboard' %}" class="btn-back">← Cancel</a>
+      </div>
+    </form>
+  </main>
+  
+  <script>
+    // Get all member name, school, and department fields
+    const memberNameInputs = document.querySelectorAll('.member-name');
+    const memberSchoolSelects = document.querySelectorAll('.member-school');
+    const memberDepartmentSelects = document.querySelectorAll('.member-department');
+  
+    // Loop through each member's name input
+    memberNameInputs.forEach((nameInput, index) => {
+      // Get the corresponding school and department select fields
+      const schoolSelect = memberSchoolSelects[index];
+      const departmentSelect = memberDepartmentSelects[index];
+  
+      // Add a 'input' event listener to the name field
+      nameInput.addEventListener('input', () => {
+        // If the name field is not empty, enable the dropdowns
+        if (nameInput.value.trim() !== '') {
+          schoolSelect.disabled = false;
+          departmentSelect.disabled = false;
+        } else {
+          // If the name field is empty, disable the dropdowns and reset their values
+          schoolSelect.disabled = true;
+          departmentSelect.disabled = true;
+          schoolSelect.value = '';
+          departmentSelect.value = '';
+        }
+      });
+  
+      // Also check on page load in case a value is already there (e.g., from a form submission error)
+      if (nameInput.value.trim() !== '') {
+        schoolSelect.disabled = false;
+        departmentSelect.disabled = false;
+      }
+    });
+  </script>
+
+</body>
+
+</html>

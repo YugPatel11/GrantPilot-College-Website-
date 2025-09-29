@@ -1,0 +1,141 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PP Savani University - SSIP</title>
+
+  <!-- Fonts and Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Raleway:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <!-- AOS (Animate On Scroll) -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <!-- Your custom dashboard CSS -->
+  <link rel="stylesheet" href="{% static 'css/student/dashboard.css' %}">
+
+  <!-- 🔥 Extra styles for Steps to Apply for POC -->
+  <style>
+    .steps-container {
+      padding: 60px 20px;
+      background: radial-gradient(circle at top left, #1b1b3a, #2e2e64);
+      color: white;
+      text-align: center;
+      border-radius: 20px;
+      margin: 50px auto;
+      max-width: 1100px;
+    }
+    .steps-container h2 {
+      font-size: 32px;
+      margin-bottom: 40px;
+      color: #00f7ff;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .steps-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+    }
+    .step-card {
+      position: relative;
+      width: 260px;
+      padding: 30px 20px;
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 0 25px rgba(0, 255, 255, 0.15);
+      transition: transform 0.3s ease;
+    }
+    .step-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 35px rgba(0, 255, 255, 0.3);
+    }
+    .step-card::before {
+      content: attr(data-step);
+      position: absolute;
+      top: -25px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #00f7ff;
+      color: #000;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      font-weight: bold;
+      font-size: 22px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+    }
+    .step-title {
+      font-size: 20px;
+      font-weight: 600;
+      margin-top: 25px;
+      color: #ffffff;
+    }
+    .step-desc {
+      font-size: 14px;
+      margin-top: 10px;
+      color: #d6eaff;
+    }
+    @media (max-width: 768px) {
+      .steps-grid {
+        flex-direction: column;
+        align-items: center;
+      }
+      .step-card {
+        width: 90%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- other sections before the dashboard... -->
+
+<section class="dashboard-section section-spacing">
+  <div class="container">
+
+    <!-- STEPS TO APPLY FOR POC SECTION -->
+    <div class="steps-container" data-aos="fade-up">
+      <h2>Steps to Apply for POC</h2>
+      <div class="steps-grid">
+        <div class="step-card" data-step="01">
+          <div class="step-title">Find Mentor</div>
+          <div class="step-desc">Find appropriate mentor for your project</div>
+        </div>
+        <div class="step-card" data-step="02">
+          <div class="step-title">Login / Signup</div>
+          <div class="step-desc">Login to your account or sign up as a new user</div>
+        </div>
+        <div class="step-card" data-step="03">
+          <div class="step-title">Submit Form</div>
+          <div class="step-desc">Fill and submit POC/IPR application form</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- YOUR PROJECT APPLICATIONS PLACEHOLDER -->
+    <h2 id="your_projects" class="dashboard-page-heading">Your Project Applications</h2>
+
+    <!-- More sections can be appended below this in the actual project -->
+
+  </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init({ duration: 1000, once: false });
+</script>
+
+</body>
+</html>

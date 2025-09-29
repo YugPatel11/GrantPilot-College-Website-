@@ -1,0 +1,285 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit Project - Grantpilot</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Raleway:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: #f4f4f3;
+            color: #040405;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        header {
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 2vw;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            flex-wrap: wrap;
+        }
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .logo {
+            height: 65px;
+            transition: transform 0.2s ease;
+        }
+        .logo:hover {
+            transform: scale(1.05);
+        }
+        .dashboard-page-heading {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #da1f21;
+            font-family: 'Raleway', sans-serif;
+            margin-top: 40px;
+            margin-bottom: 30px;
+        }
+        .section-card {
+            background: #fffffa;
+            border-left: 5px solid #da1f21;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px auto;
+            max-width: 95%;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+        }
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #1076b9;
+            font-family: 'Raleway', sans-serif;
+            margin-bottom: 25px;
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px; /* Adjust as needed */
+        }
+
+        /* Fix for overlapping fields within info-grid */
+        .info-grid > div { /* Target each direct child div within info-grid */
+            display: flex;
+            flex-direction: column; /* Stack label and input vertically */
+            gap: 6px; /* Space between label and input */
+        }
+
+        .info-grid label,
+        .simple-info label {
+            font-weight: 600;
+            /* margin-bottom: 6px; Removed, as gap handles it */
+            display: block;
+            color: #444;
+        }
+        .info-grid input[type="text"],
+        .info-grid input[type="number"],
+        .simple-info input[type="number"],
+        .info-grid textarea,
+        .info-grid input[type="file"] { /* Added input[type="file"] */
+            width: 100%; /* Ensure inputs take full width of their container */
+            padding: 10px 15px;
+            font-size: 1rem;
+            font-family: 'Open Sans', sans-serif;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background: #f9f9f9;
+            color: #333;
+            line-height: 1.4;
+            box-sizing: border-box; /* Include padding and border in the element's total width and height */
+        }
+        .info-grid textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        .info-grid input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        .button-group {
+            text-align: center;
+            margin-top: 40px;
+            margin-bottom: 40px;
+            
+        }
+        .btn-submit {
+            background-color: #da1f21;
+            color: #fff;
+            padding: 12px 28px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-right: 15px;
+             transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+        }
+        .btn-submit:hover {
+            background-color: #b0191b;
+            transform: translateY(-3px);
+        }
+        .btn-back {
+            background-color: #1076b9;
+            color: #fff;
+            padding: 12px 28px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+             transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+        }
+        .btn-back:hover {
+            background-color: #0a5a8d;
+            transform: translateY(-3px);
+        }
+        @media (max-width: 768px) {
+            .info-grid {
+                grid-template-columns: 1fr; /* Stack items vertically on small screens */
+            }
+            .dashboard-page-heading {
+                font-size: 2rem;
+            }
+            .section-card {
+                padding: 20px;
+            }
+            .button-group button {
+                display: block;
+                width: 80%;
+                margin: 15px auto;
+            }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="header-left">
+        <img class="logo" src="{% static 'Images/Logo/ppsu.png' %}" alt="P P Savani University Logo">
+        <img class="logo" src="{% static 'Images/Logo/1.png' %}" alt="University Logo">
+        <img class="logo" src="{% static 'Images/Logo/ebc.png' %}" alt="EBC Logo">
+        <img class="logo" src="{% static 'Images/Logo/ssip.png' %}" alt="SSIP Logo">
+    </div>
+</header>
+
+<main>
+    <h1 class="dashboard-page-heading">Edit Project</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="section-card">
+            <div class="section-title">📁 Project Information</div>
+            <div class="info-grid">
+                <div><label>Title</label><input type="text" name="title" value="{{ project.title }}"></div>
+                <div><label>Broad Area</label><input type="text" name="broad_area" value="{{ project.broad_area }}"></div>
+                <div><label>Startup Name</label><input type="text" name="startup_name" value="{{ project.startup_name }}"></div>
+                <div><label>Driving Question</label><textarea name="driving_question">{{ project.driving_question }}</textarea></div>
+                <div><label>Major Problems</label><textarea name="major_problems">{{ project.major_problems }}</textarea></div>
+                <div><label>Existing Alternatives</label><textarea name="existing_alternatives">{{ project.existing_alternatives }}</textarea></div>
+                <div><label>Proposed Solution</label><textarea name="proposed_solution">{{ project.proposed_solution }}</textarea></div>
+                <div><label>Unique Value Proposition</label><textarea name="unique_value_proposition">{{ project.unique_value_proposition }}</textarea></div>
+                <div><label>Early Adopters</label><textarea name="early_adopters">{{ project.early_adopters }}</textarea></div>
+                <div><label>Sustainability Plan</label><textarea name="sustainability_plan">{{ project.sustainability_plan }}</textarea></div>
+                <div><label>Timeline</label><textarea name="timeline">{{ project.timeline }}</textarea></div>
+                <div><label>IPR Potential</label><input type="checkbox" name="ipr_potential" {% if project.ipr_potential %}checked{% endif %}></div>
+            </div>
+        </div>
+
+        <div class="section-card">
+            <div class="section-title">📸 Project Photos</div>
+            <div class="info-grid">
+                <div>
+                    <label>Group Photo</label>
+                    <input type="file" name="group_photo" accept="image/*">
+                    {% if project.group_photo %}
+                        <p>Current: <a href="{{ project.group_photo.url }}" target="_blank">View Group Photo</a></p>
+                    {% endif %}
+                </div>
+                <div>
+                    <label>Product Photo</label>
+                    <input type="file" name="product_photo" accept="image/*">
+                    {% if project.product_photo %}
+                        <p>Current: <a href="{{ project.product_photo.url }}" target="_blank">View Product Photo</a></p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+
+        {% if application %}
+        <div class="section-card">
+            <div class="section-title">👨‍💼 Team Leader Details</div>
+            <div class="info-grid">
+                <div><label>Name</label><input type="text" name="leader_name" value="{{ application.team_leader.name }}"></div>
+                <div><label>Email</label><input type="text" name="leader_email" value="{{ application.team_leader.email }}"></div>
+                <div><label>Enrollment ID</label><input type="text" name="leader_enrollment_id" value="{{ application.team_leader.enrollment_id }}"></div>
+                <div><label>Semester</label><input type="text" name="leader_semester" value="{{ application.team_leader.semester }}"></div>
+                <div><label>Phone</label><input type="text" name="leader_phone" value="{{ application.team_leader.phone }}"></div>
+                <div><label>School</label><input type="text" name="leader_school" value="{{ application.team_leader.school }}"></div>
+                <div><label>Department</label><input type="text" name="leader_department" value="{{ application.team_leader.department }}"></div>
+            </div>
+        </div>
+
+        <div class="section-card">
+            <div class="section-title">🎓 Mentor Details</div>
+            <div class="info-grid">
+                <div><label>Name</label><input type="text" name="mentor_name" value="{{ application.mentor.name }}"></div>
+                <div><label>Email</label><input type="text" name="mentor_email" value="{{ application.mentor.email }}"></div>
+                <div><label>Phone</label><input type="text" name="mentor_phone" value="{{ application.mentor.phone }}"></div>
+                <div><label>School</label><input type="text" name="mentor_school" value="{{ application.mentor.school }}"></div>
+            </div>
+        </div>
+
+        {% if application.co_mentor %}
+        <div class="section-card">
+            <div class="section-title">🎓 Co-Mentor Details</div>
+            <div class="info-grid">
+                <div><label>Name</label><input type="text" name="co_mentor_name" value="{{ application.co_mentor.name }}"></div>
+                <div><label>Email</label><input type="text" name="co_mentor_email" value="{{ application.co_mentor.email }}"></div>
+            </div>
+        </div>
+        {% endif %}
+
+        {% for member in application.members.all %}
+        <div class="section-card">
+            <div class="section-title">👥 Member {{ forloop.counter }}</div>
+            <div class="info-grid">
+                <div><label>Name</label><input type="text" name="member_name_{{ forloop.counter }}" value="{{ member.name }}"></div>
+                <div><label>Email</label><input type="text" name="member_email_{{ forloop.counter }}" value="{{ member.email }}"></div>
+                <div><label>Enrollment ID</label><input type="text" name="member_enrollment_{{ forloop.counter }}" value="{{ member.enrollment_id }}"></div>
+                <div><label>Semester</label><input type="text" name="member_semester_{{ forloop.counter }}" value="{{ member.semester }}"></div>
+                <div><label>Phone</label><input type="text" name="member_phone_{{ forloop.counter }}" value="{{ member.phone }}"></div>
+                <div><label>School</label><input type="text" name="member_school_{{ forloop.counter }}" value="{{ member.school }}"></div>
+                <div><label>Department</label><input type="text" name="member_department_{{ forloop.counter }}" value="{{ member.department }}"></div>
+            </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+
+        <div class="section-card">
+            <div class="section-title">💵 Grant Information</div>
+            <div class="info-grid">
+                <div><label>Has Received Grant</label><input type="checkbox" name="has_received_grant" {% if project.has_received_grant %}checked{% endif %}></div>
+                <div><label>Approved Grant Amount</label><input type="number" name="approved_grant_amount" value="{{ project.approved_grant_amount }}"></div>
+            </div>
+        </div>
+
+        <div class="button-group">
+            <button type="submit" class="btn-submit">Update Project</button>
+            <button type="button" class="btn-back" onclick="window.history.back()">← Back</button>
+        </div>
+    </form>
+</main>
+</body>
+</html>

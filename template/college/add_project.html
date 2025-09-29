@@ -1,0 +1,304 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Project - Grantpilot</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Raleway:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: #f4f4f3;
+            color: #040405;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        header {
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 2vw;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            flex-wrap: wrap;
+        }
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .logo {
+            height: 65px;
+            transition: transform 0.2s ease;
+        }
+        .logo:hover {
+            transform: scale(1.05);
+        }
+        .dashboard-page-heading {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #da1f21;
+            font-family: 'Raleway', sans-serif;
+            margin-top: 40px;
+            margin-bottom: 30px;
+        }
+        .section-card {
+            background: #fffffa;
+            border-left: 5px solid #da1f21;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px auto;
+            max-width: 95%;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+        }
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #1076b9;
+            font-family: 'Raleway', sans-serif;
+            margin-bottom: 25px;
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        /* Fix for overlapping fields within info-grid */
+        .info-grid > div {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .info-grid label,
+        .simple-info label {
+            font-weight: 600;
+            display: block;
+            color: #444;
+        }
+        .info-grid input[type="text"],
+        .info-grid input[type="number"],
+        .simple-info input[type="number"],
+        .info-grid textarea {
+            width: 100%;
+            padding: 10px 15px;
+            font-size: 1rem;
+            font-family: 'Open Sans', sans-serif;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background: #f9f9f9;
+            color: #333;
+            line-height: 1.4;
+            box-sizing: border-box;
+        }
+        .info-grid textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        .info-grid input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        .button-group {
+            text-align: center;
+            margin-top: 40px;
+            margin-bottom: 40px; /* Added for bottom spacing */
+        }
+        .btn-submit {
+            background-color: #da1f21;
+            color: #fff;
+            padding: 12px 28px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-right: 15px;
+            transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+        }
+        .btn-submit:hover {
+            background-color: #b0191b;
+            transform: translateY(-3px);
+        }
+        .btn-back { /* Renamed from btn-cancel for consistency with edit_project */
+            background-color: #1076b9;
+            color: #fff;
+            padding: 12px 28px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+        }
+        .btn-back:hover {
+            background-color: #0a5a8d;
+            transform: translateY(-3px);
+        }
+        @media (max-width: 768px) {
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+            .dashboard-page-heading {
+                font-size: 2rem;
+            }
+            .section-card {
+                padding: 20px;
+            }
+            .button-group button {
+                display: block;
+                width: 80%;
+                margin: 15px auto;
+            }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="header-left">
+        <img class="logo" src="{% static 'Images/Logo/ppsu.png' %}" alt="P P Savani University Logo">
+        <img class="logo" src="{% static 'Images/Logo/1.png' %}" alt="University Logo">
+        <img class="logo" src="{% static 'Images/Logo/ebc.png' %}" alt="EBC Logo">
+        <img class="logo" src="{% static 'Images/Logo/ssip.png' %}" alt="SSIP Logo">
+    </div>
+</header>
+
+<main>
+    <h1 class="dashboard-page-heading">Add New Project</h1>
+    <form method="post">
+        {% csrf_token %}
+
+        <!-- 📁 Project Info -->
+        <div class="section-card">
+            <div class="section-title">📁 Project Information</div>
+            <div class="info-grid">
+                <div><label>Title</label><input type="text" name="title"></div>
+                <div><label>Broad Area</label><input type="text" name="broad_area"></div>
+                <div><label>Startup Name</label><input type="text" name="startup_name"></div>
+                <div><label>Driving Question</label><textarea name="driving_question"></textarea></div>
+                <div><label>Major Problems</label><textarea name="major_problems"></textarea></div>
+                <div><label>Existing Alternatives</label><textarea name="existing_alternatives"></textarea></div>
+                <div><label>Proposed Solution</label><textarea name="proposed_solution"></textarea></div>
+                <div><label>Unique Value Proposition</label><textarea name="unique_value_proposition"></textarea></div>
+                <div><label>Early Adopters</label><textarea name="early_adopters"></textarea></div>
+                <div><label>Sustainability Plan</label><textarea name="sustainability_plan"></textarea></div>
+                <div><label>Timeline</label><textarea name="timeline"></textarea></div>
+                <div><label>IPR Potential</label><input type="checkbox" name="ipr_potential"></div>
+            </div>
+        </div>
+
+        <!-- 👨‍💼 Team Leader -->
+        <div class="section-card">
+            <div class="section-title">👨‍💼 Team Leader Details</div>
+            <div class="info-grid">
+                <div><label>Name</label><input type="text" name="leader_name"></div>
+                <div><label>Email</label><input type="text" name="leader_email"></div>
+                <div><label>Enrollment ID</label><input type="text" name="leader_enrollment_id"></div>
+                <div><label>Semester</label><input type="text" name="leader_semester"></div>
+                <div><label>Phone</label><input type="text" name="leader_phone"></div>
+                <div><label>School</label><input type="text" name="leader_school"></div>
+                <div><label>Department</label><input type="text" name="leader_department"></div>
+            </div>
+        </div>
+
+        <!-- 🎓 Mentor -->
+        <div class="section-card">
+            <div class="section-title">🎓 Mentor Details</div>
+            <div class="info-grid">
+                <div><label>Name</label><input type="text" name="mentor_name"></div>
+                <div><label>Email</label><input type="text" name="mentor_email"></div>
+                <div><label>Phone</label><input type="text" name="mentor_phone"></div>
+                <div><label>School</label><input type="text" name="mentor_school"></div>
+            </div>
+        </div>
+
+        <!-- 🎓 Co-Mentor (Optional, can be added via JS if needed) -->
+        <div class="section-card">
+            <div class="section-title">🎓 Co-Mentor Details (Optional)</div>
+            <div class="info-grid">
+                <div><label>Name</label><input type="text" name="co_mentor_name"></div>
+                <div><label>Email</label><input type="text" name="co_mentor_email"></div>
+            </div>
+        </div>
+
+        <!-- 👥 Member 1 -->
+        <div class="section-card">
+            <div class="section-title">👥 Member 1</div>
+            <div class="info-grid">
+                <div><label>Name</label><input type="text" name="member_name_1"></div>
+                <div><label>Email</label><input type="text" name="member_email_1"></div>
+                <div><label>Enrollment ID</label><input type="text" name="member_enrollment_1"></div>
+                <div><label>Semester</label><input type="text" name="member_semester_1"></div>
+                <div><label>Phone</label><input type="text" name="member_phone_1"></div>
+                <div><label>School</label><input type="text" name="member_school_1"></div>
+                <div><label>Department</label><input type="text" name="member_department_1"></div>
+            </div>
+        </div>
+
+        <!-- 👥 Member 2 -->
+        <div class="section-card">
+            <div class="section-title">👥 Member 2</div>
+            <div class="info-grid">
+                <div><label>Name</label><input type="text" name="member_name_2"></div>
+                <div><label>Email</label><input type="text" name="member_email_2"></div>
+                <div><label>Enrollment ID</label><input type="text" name="member_enrollment_2"></div>
+                <div><label>Semester</label><input type="text" name="member_semester_2"></div>
+                <div><label>Phone</label><input type="text" name="member_phone_2"></div>
+                <div><label>School</label><input type="text" name="member_school_2"></div>
+                <div><label>Department</label><input type="text" name="member_department_2"></div>
+            </div>
+        </div>
+
+        <!-- 👥 Member 3 -->
+        <div class="section-card">
+            <div class="section-title">👥 Member 3</div>
+            <div class="info-grid">
+                <div><label>Name</label><input type="text" name="member_name_3"></div>
+                <div><label>Email</label><input type="text" name="member_email_3"></div>
+                <div><label>Enrollment ID</label><input type="text" name="member_enrollment_3"></div>
+                <div><label>Semester</label><input type="text" name="member_semester_3"></div>
+                <div><label>Phone</label><input type="text" name="member_phone_3"></div>
+                <div><label>School</label><input type="text" name="member_school_3"></div>
+                <div><label>Department</label><input type="text" name="member_department_3"></div>
+            </div>
+        </div>
+
+        <!-- 👥 Member 4 -->
+        <div class="section-card">
+            <div class="section-title">👥 Member 4</div>
+            <div class="info-grid">
+                <div><label>Name</label><input type="text" name="member_name_4"></div>
+                <div><label>Email</label><input type="text" name="member_email_4"></div>
+                <div><label>Enrollment ID</label><input type="text" name="member_enrollment_4"></div>
+                <div><label>Semester</label><input type="text" name="member_semester_4"></div>
+                <div><label>Phone</label><input type="text" name="member_phone_4"></div>
+                <div><label>School</label><input type="text" name="member_school_4"></div>
+                <div><label>Department</label><input type="text" name="member_department_4"></div>
+            </div>
+        </div>
+
+        <!-- 💵 Grant Info -->
+        <div class="section-card">
+            <div class="section-title">💵 Grant Information</div>
+            <div class="info-grid">
+                <div><label>Has Received Grant</label><input type="checkbox" name="has_received_grant"></div>
+                <div><label>Approved Grant Amount</label><input type="number" name="approved_grant_amount"></div>
+            </div>
+        </div>
+
+        <!-- Buttons -->
+        <div class="button-group">
+            <button type="submit" class="btn-submit">Save Project</button>
+            <button type="button" class="btn-back" onclick="window.history.back()">← Back</button>
+        </div>
+    </form>
+</main>
+</body>
+</html>
