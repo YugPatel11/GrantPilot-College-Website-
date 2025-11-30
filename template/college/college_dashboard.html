@@ -33,7 +33,7 @@
             <a href="#contact">Contact</a>
             <form id="logoutForm" action="{% url 'logout' %}" method="post">
                 {% csrf_token %}
-                <button type="button" class="logout-btn" id="logoutBtn">
+                <button type="submit" class="logout-btn" id="logoutBtn">
                     <i class="fas fa-sign-out-alt"></i> Logout
                 </button>
             </form>
