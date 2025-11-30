@@ -1,3 +1,4 @@
+import create_superuser
 from dotenv import load_dotenv; load_dotenv()
 
 """

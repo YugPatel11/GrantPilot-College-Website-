@@ -80,8 +80,10 @@ WSGI_APPLICATION = 'Grantpilot.wsgi.application'
 import dj_database_url
 
 DATABASES = {
-    "default": dj_database_url.config(
-        default="sqlite:///db.sqlite3"
+    'default': dj_database_url.config(
+        default="postgresql://ssip_db_user:lsMJcfvkvVkEjatFT7Cav9YiBAv0hD3Y@dpg-d4ltc163jp1c739irc8g-a.singapore-postgres.render.com:5432/ssip_db?sslmode=require",
+        conn_max_age=600,
+        ssl_require=True
     )
 }
 
@@ -142,3 +144,16 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+
+
+
+if os.environ.get("CREATE_SUPERUSER") == "1":
+    from django.contrib.auth import get_user_model
+    User = get_user_model()
+    username = "yugrojivadiya"
+    password = "yurojivadiya1125"
+    email = "yugrojivadiya@example.com"
+
+    if not User.objects.filter(username=username).exists():
+        User.objects.create_superuser(username=username, email=email, password=password)

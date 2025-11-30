@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: ssip
+    env: python
+    buildCommand: "./render_build.sh"
+    startCommand: "gunicorn Grantpilot.wsgi:application"
