@@ -562,13 +562,9 @@ def delete_project(request, project_id):
 
 # ------ OTHER TEMP VIEWS ------
 
-def temp1(request):
-    return render(request, 'temp1.html')
+def Forgot_Password(request):
+    return render(request, 'Forgot_Password.html')
 
-
-
-def temp2(request):
-    return render(request, 'temp2.html')
 
 def unauthorized_view(request):
     return render(request, 'college/unauthorized.html')

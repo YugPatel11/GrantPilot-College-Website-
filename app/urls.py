@@ -8,6 +8,7 @@ urlpatterns = [
     path('login/', views.user_login, name='login'),
     path('logout/', views.user_logout, name='logout'),
     path('signup/', views.signup, name='signup'),
+    path('Forgot_Password/', views.Forgot_Password, name='Forgot_Password'),
 
 
     path('student_dashboard/', views.student_dashboard, name='student_dashboard'),
@@ -31,8 +32,7 @@ urlpatterns = [
     path('delete_project/<int:project_id>/', views.delete_project, name='delete_project'),
     path('unauthorized/', views.unauthorized_view, name='unauthorized'),
 
-    path('temp1/', views.temp1, name='temp1'),
-    path('temp2/', views.temp2, name='temp2'),
+
 ]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
  
