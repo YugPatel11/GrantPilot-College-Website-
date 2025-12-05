@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'iec.ppsu.ac.in', 'www.iec.ppsu.ac.in']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'iec.ppsu.ac.in', 'www.iec.ppsu.ac.in','ssip-8b5i.onrender.com']
 
 
 
