@@ -33,18 +33,23 @@ ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'iec.ppsu.ac.in', 'www.iec.ppsu.ac.in
 # Application definition
 
 INSTALLED_APPS = [
-    'app',
+    'cloudinary_storage',
+    'cloudinary',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'cloudinary',
-    'cloudinary_storage',
+    'app',
 ]
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': os.environ.get('dhqjcdhif'),
+    'API_KEY': os.environ.get('883299358674768'),
+    'API_SECRET': os.environ.get('wi4UlXVuIRaZtxB9T1HwVAFpA0g'),
+}
 
 MIDDLEWARE = [
     
